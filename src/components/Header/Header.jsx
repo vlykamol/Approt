@@ -57,7 +57,9 @@ function DropDownBtn({options, selectedOption, setOption}) {
     <>
     <div className='DropDownContainer w-100'>
       <button className='DropDownBtn' onClick={() => setIsOpen((prev) => !prev)}>
-        {selectedOption}
+        <div style={{textTransform : "capitalize"}}>
+          {selectedOption}
+        </div>
         <DownSVG />
       </button>
       {isOpen && (

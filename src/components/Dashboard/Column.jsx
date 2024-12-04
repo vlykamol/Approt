@@ -29,7 +29,7 @@ export default function Column({group}){
 
     <div className="column ">
       <ColumnHeader Icon={group.icon} title={group.title} count={ticks.length} />
-      <div>
+      <div className="flex flex-col gap-1">
       {ticks.map((tick, key) => {
         return <Card data={tick} key={key} />
       })}

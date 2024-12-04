@@ -2,13 +2,13 @@
 /* eslint-disable react/prop-types */
 import "./Dashboard.css"
 import { useData } from "../../context/dataContext"
-import { BackLogIcon, CancelledIcon, DoneIcon, HighPriority, InProgressIcon, LowPriority, MediumPriority, Priority1, Priority2, ToDOIcon } from "../SVGs/icons";
+import { BackLogIcon, CancelledIcon, DoneIcon, HighPriority, InProgressIcon, LowPriority, MediumPriority, NoPriorityIcon, Priority1, Priority2, ToDOIcon } from "../SVGs/icons";
 import { useEffect, useState } from "react";
 import InitialsIcon from "../SVGs/Initials";
 import Column from "./Column";
 
 const pr = ["No priority", "Low", "Medium", "High", "Urgent"]
-const prICon = [<Priority2 />, <LowPriority />, <MediumPriority />, <HighPriority />, <Priority1 />]
+const prICon = [<NoPriorityIcon />, <LowPriority />, <MediumPriority />, <HighPriority />, <Priority1 />]
 
 const statusIcons = {
   "Backlog" : <BackLogIcon />,
@@ -76,7 +76,6 @@ export default function Dashboard() {
       })
     })
   }, [groupBy])
-  
   
   return (
     <div className='container'>

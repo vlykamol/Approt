@@ -2,16 +2,16 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;
   width: 100%;
-  font-family: Arial, sans-serif;
+  height: 120px;
 }
 
-/* Header */
 .card-header {
   display: flex;
   flex-direction: row;
@@ -29,7 +29,6 @@
   color: black;
 }
 
-/* Footer */
 .card-footer {
   display: flex;
   align-items: center;
@@ -54,7 +53,6 @@
   border-radius: 12px;
 }
 
-/* Avatar */
 .card-avatar img {
   width: 32px;
   height: 32px;
