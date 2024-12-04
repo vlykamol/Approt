@@ -4,4 +4,17 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 0.5rem;
+  background-color: ghostwhite;
+}
+
+
+.column{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.columnHeader{
+  display: flex;
+  justify-content: space-between;
 }
