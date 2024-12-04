@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import "./Dashboard.css"
-import Card from '../Card/Card'
 import { useData } from "../../context/dataContext"
-import { AddIcon, BackLogIcon, CancelledIcon, DoneIcon, DotMenu3, HighPriority, InProgressIcon, LowPriority, MediumPriority, Priority1, Priority2, ToDOIcon } from "../SVGs/icons";
+import { BackLogIcon, CancelledIcon, DoneIcon, HighPriority, InProgressIcon, LowPriority, MediumPriority, Priority1, Priority2, ToDOIcon } from "../SVGs/icons";
 import { useEffect, useState } from "react";
 import InitialsIcon from "../SVGs/Initials";
+import Column from "./Column";
 
 const pr = ["No priority", "Low", "Medium", "High", "Urgent"]
 const prICon = [<Priority2 />, <LowPriority />, <MediumPriority />, <HighPriority />, <Priority1 />]
@@ -19,7 +19,9 @@ const statusIcons = {
 }
 
 export default function Dashboard() {
-  const { groupBy, users, status, priorities } = useData()
+  
+  const { tickets, setTickets, groupBy, orderBy,  users, status, priorities } = useData()
+  
   const [groups, setGroups] = useState(() => {
     return users.map(user => {
       return {
@@ -29,6 +31,21 @@ export default function Dashboard() {
       }
     })
   })
+
+  useEffect(() => {
+    setTickets(() => {
+      const sortedTickets = [...tickets]; 
+      return sortedTickets.sort((a, b) => {
+        if (orderBy === "priority") {
+          return a.priority - b.priority
+        }
+        if (orderBy === "title") {
+          return a.title.localeCompare(b.title)
+        }
+        return 0;
+      });
+    })
+  }, [orderBy])
   
   useEffect(() => {
     setGroups(() => {
@@ -67,64 +84,5 @@ export default function Dashboard() {
         return <Column key={key} group={group} />
       })}
     </div>
-  )
-}
-
-
-
-function Column({group}){
-
-  const { tickets } = useData()
-  const [ticks, setTicks] = useState([]);
-
-  useEffect(() => {
-    setTicks(() => {
-      return tickets.filter(ticket => {
-        if(group.type == "user" && ticket.userId == group.id)
-            return true
-        if(group.type == "status" && ticket.status == group.title)
-            return true
-        if(group.type == "priority" && ticket.priority == group.priority)
-            return true
-      })
-    })
-  }, [group.title, tickets])
-  
-  
-  return(
-    <div className="column ">
-      <ColumnHeader Icon={group.icon} title={group.title} count={ticks.length} />
-      <div>
-      {ticks.map((tick, key) => {
-        return <Card data={tick} key={key} />
-      })}
-      </div>
-    </div>
-  )
-}
-
-function ColumnHeader({Icon, title, count}){
-
-  return(
-    <>
-      <div className="columnHeader">
-        <div className="flex in-btwn gap-1">
-          <span>
-            {Icon}
-          </span>
-          <div>
-            {title}
-          </div>
-          <div>
-            {count}
-          </div>
-        </div>
-
-        <div className="flex gap-1">
-          <AddIcon />
-          <DotMenu3 />
-        </div>
-      </div>
-    </>
   )
 }

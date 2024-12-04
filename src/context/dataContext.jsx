@@ -35,8 +35,9 @@ export function DataProvider({children}){
         setUsers(json.users)
       } catch (error) {
         console.error(error.message);
+      } finally{
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     getData();
@@ -53,25 +54,11 @@ export function DataProvider({children}){
     setStatus([...s])
   }, [tickets])
   
-  useEffect(() => {
-    setTickets(() => {
-      const sortedTickets = [...tickets]; 
-      return sortedTickets.sort((a, b) => {
-        if (orderBy === "priority") {
-          return a.priority - b.priority
-        }
-        if (orderBy === "title") {
-          return a.title.localeCompare(b.title)
-        }
-        return 0;
-      });
-    })
-  }, [orderBy])
-  
 
   const value = {
     users,
     tickets,
+    setTickets,
     priorities,
     status,
     groupBy,

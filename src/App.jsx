@@ -6,8 +6,10 @@ function App() {
   return (
     <>
       <DataProvider>
-        <Header />
-        <Dashboard />
+        <div className='mainContainer'>
+          <Header />
+          <Dashboard />
+        </div>
       </DataProvider>
     </>
   )

@@ -1,19 +1,15 @@
 .container {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  height: ;
+  display: flex;
   gap: 1rem;
   padding: 0.5rem;
-  background-color: ghostwhite;
 }
-
-
 .column{
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 400px;
 }
-
 .columnHeader{
   display: flex;
   justify-content: space-between;
